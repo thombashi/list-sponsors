@@ -38,7 +38,7 @@ setuptools.setup(
     url=REPOSITORY_URL,
     author=pkg_info["__author__"],
     author_email=pkg_info["__email__"],
-    description="A CLI tool to list GitHub sponsors of a user/organization with specified format.",
+    description="A CLI tool to list GitHub sponsors of a user/organization with a specified format.",
     include_package_data=True,
     keywords=["GitHub", "sponsors"],
     license=pkg_info["__license__"],
