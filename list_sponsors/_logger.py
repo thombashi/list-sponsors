@@ -1,6 +1,11 @@
 import sys
 
+from loguru import logger
+
 from ._const import MODULE_NAME, LogLevel
+
+
+logger.disable(MODULE_NAME)
 
 
 class NullLogger:
@@ -44,14 +49,6 @@ class NullLogger:
 
     def warning(self, __message, *args, **kwargs):  # pragma: no cover
         pass
-
-
-try:
-    from loguru import logger
-
-    logger.disable(MODULE_NAME)
-except ImportError:
-    logger = NullLogger()  # type: ignore
 
 
 def set_logger(is_enable: bool, propagation_depth: int = 1) -> None:
