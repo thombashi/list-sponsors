@@ -23,9 +23,8 @@ class Sponsor(
 class SponsorRendererInterface(metaclass=abc.ABCMeta):
     REGEXP_HAS_AVATAR = re.compile(r"&u=")
 
-    @abc.abstractclassmethod
-    def render(self, sponsor: Sponsor, avatar_size: Optional[int] = None) -> str:
-        pass
+    @abc.abstractmethod
+    def render(self, sponsor: Sponsor, avatar_size: Optional[int] = None) -> str: ...
 
 
 class MarkdownSponsorRenderer(SponsorRendererInterface):
