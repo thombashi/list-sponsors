@@ -116,14 +116,12 @@ class GitHubV4Client:
                 price = None
             else:
                 price = tier["monthlyPriceInDollars"] if "monthlyPriceInDollars" in tier else None
-                # print(price)
 
             yield Sponsor(
                 **entity, monthlyPriceInDollars=price, isOneTimePayment=node["isOneTimePayment"]
             )
 
         page_info = sponsorships["pageInfo"]
-        # print(page_info)
 
         while page_info["hasNextPage"]:
             sponsorships = self.__fetch_sponsors(
@@ -148,4 +146,3 @@ class GitHubV4Client:
                 )
 
             page_info = sponsorships["pageInfo"]
-            # print(page_info)
