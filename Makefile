@@ -28,11 +28,11 @@ setup-ci:
 	$(PYTHON) -m pip install -q --disable-pip-version-check --upgrade pip
 	$(PYTHON) -m pip install -q --disable-pip-version-check --upgrade tox
 
-.PHONY: setup
-setup: setup-ci
-	@$(PYTHON) -m pip install -q --disable-pip-version-check --upgrade -e .[test] releasecmd
-	@$(PYTHON) -m pip check
+.PHONY: setup-dev
+setup-dev: setup-ci
+	$(PYTHON) -m pip install -q --disable-pip-version-check --upgrade -e .[test]
+	$(PYTHON) -m pip check
 
 .PHONY: test
 test:
-	@$(PYTHON) -m tox -e py
+	$(PYTHON) -m tox -e py
