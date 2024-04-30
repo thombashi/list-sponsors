@@ -54,7 +54,7 @@ setuptools.setup(
     install_requires=INSTALL_REQUIRES,
     extras_require={"test": TESTS_REQUIRES},
     classifiers=[
-        "Development Status :: 3 - Alpha",
+        "Development Status :: 4 - Beta",
         "Environment :: Console",
         "Intended Audience :: Information Technology",
         "License :: OSI Approved :: MIT License",
