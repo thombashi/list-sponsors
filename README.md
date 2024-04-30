@@ -2,7 +2,7 @@
 
 
 ## Summary
-A CLI tool to list GitHub sponsors of a user/organization with specified format.
+A CLI tool to list GitHub sponsors of a user/organization with a specified format.
 
 
 ## Installation
@@ -45,7 +45,7 @@ export GITHUB_TOKEN=<PAT>
 list-sponsors
 ```
 
-### Output: raw
+### Output: raw markdown
 ```md
 [![onetime: Dmitry Belyaev (b4tman)](https://avatars.githubusercontent.com/u/3658062?s=48&v=4 "onetime: Dmitry Belyaev (b4tman)")](https://github.com/b4tman)
 [![Charles Becker (chasbecker)](https://avatars.githubusercontent.com/u/44389260?s=48&u=6da7176e51ae2654bcfd22564772ef8a3bb22318&v=4 "Charles Becker (chasbecker)")](https://github.com/chasbecker)
@@ -59,5 +59,5 @@ list-sponsors
 
 
 ## Dependencies
-- Python 3.7+
+- Python 3.8+
 - [Python package dependencies (automatically installed)](https://github.com/thombashi/list-sponsors/network/dependencies)
