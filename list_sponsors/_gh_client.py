@@ -65,6 +65,12 @@ class GitHubV4Client:
                                         avatarUrl(size: $avatar_size)
                                         url
                                     }
+                                    ... on Organization {
+                                        name
+                                        login
+                                        avatarUrl(size: $avatar_size)
+                                        url
+                                    }
                                 }
                             }
                         }
@@ -93,11 +99,22 @@ class GitHubV4Client:
             "avatar_size": avatar_size,
         }
         result = self.exec_query(query, variables=variables)
+        data = result.get("data", {})
 
-        if result["data"]["user"]:
-            return result["data"]["user"]["sponsorshipsAsMaintainer"]
-        elif result["data"]["organization"]:
-            return result["data"]["organization"]["sponsorshipsAsMaintainer"]
+        if "user" in data:
+            return data["user"]["sponsorshipsAsMaintainer"]
+        elif "organization" in data:
+            return data["organization"]["sponsorshipsAsMaintainer"]
+
+        err_msg_cache = set()
+        if "errors" in result:
+            for error in result["errors"]:
+                err_msg = f"{error['type']}: {error['message']}"
+                if err_msg in err_msg_cache:
+                    continue
+
+                err_msg_cache.add(err_msg)
+                logger.error(err_msg)
 
         raise RuntimeError("empty result")
 
@@ -122,6 +139,7 @@ class GitHubV4Client:
             )
 
         page_info = sponsorships["pageInfo"]
+        logger.debug(f"pageInfo: {page_info}")
 
         while page_info["hasNextPage"]:
             sponsorships = self.__fetch_sponsors(
@@ -146,3 +164,4 @@ class GitHubV4Client:
                 )
 
             page_info = sponsorships["pageInfo"]
+            logger.debug(f"pageInfo: {page_info}")
